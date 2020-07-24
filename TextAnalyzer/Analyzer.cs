@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace TextAnalyzer
@@ -41,7 +42,7 @@ namespace TextAnalyzer
 
         public Analyzer(string str)
         {
-            Str = str.ToUpper();
+            Str = str.ToUpper(CultureInfo.CurrentUICulture);
             this.InitABC();
             this.CounterEverySymbol();
             this.CounterProbability();

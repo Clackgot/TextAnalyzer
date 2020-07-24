@@ -32,7 +32,7 @@ namespace TextAnalyzer
         /// <param name="count">Количество элементов последовательности</param>
         /// <param name="add">Значение нового элемента</param>
         /// <returns>Среднее значение последовательности</returns>
-        public double Average(double aver, int count, double add)
+        public static double Average(double aver, int count, double add)
         {
             double temp = count / (double)(count + 1);
             return aver * temp + add / (count + 1);
@@ -52,14 +52,7 @@ namespace TextAnalyzer
 
         private void SetupInputText()
         {
-            richTextBoxInput.Text = "Политика Александра 1 была направлена на защиту и расширение территории государства, усовершенствование аппарата государственного управления и повышение" +
-                " авторитета страны на международной арене.По данной реформе крестьяне получали личную свободу (без выкупа) и наделялись общегражданскими правами. Крестьяне получали землю " +
-                "в собственность не безвозмездно, а должны были выкупать у помещиков. Городская контрреформа. С 1892 года число избирателей из-за увеличения имущественного ценза сокращается, " +
-                "а все постановления думы одобрялись губернским начальством. Также было ограничено количество заседаний думы. Городское управление, таким образом, осуществлялось правительством." +
-                "Судебная контрреформа. С 1887 года повысился образовательный и имущественный ценз для присяжных заседателей.Это смогло увеличить количество дворян в суде.Были ограничены гласность " +
-                "и публичность, а из судебного ведения были изъяты политические дела.Контрреформы печати и образования. Был существенно ужесточён контроль над учебными заведениями.Университетским" +
-                " уставом от 1884 года упразднялась вся автономия университетов.Профессора и сам ректор назначались правительством, а плата за обучение была поднята в два раза. Кроме того, была " +
-                "сформирована специальная инспекция, которая осуществляла надзор за учащимися.";
+            richTextBoxInput.Text = data.defaultInputString;
         }
         /// <summary>
         /// Устанавливает базовую структуру DataGrid
@@ -100,7 +93,7 @@ namespace TextAnalyzer
             int index = 0;
             foreach (var item in analyzer.ProbabilityRuSymblos)
             {
-                
+
                 string prop = string.Concat(item.Value.ToString("N2"));
                 dataGridViewTextAlphabetInfo.Rows[index].Cells[2].Value = prop;
                 index++;
@@ -181,7 +174,7 @@ namespace TextAnalyzer
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = fileName;
-            openFileDialog1.Filter = "Text files(*.txt)|*.txt|Word(*.doc)|*.doc";
+            openFileDialog1.Filter = data.openFileDialog1_Filter;
             
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -272,8 +265,22 @@ namespace TextAnalyzer
             
         }
 
-
-        
+        /// <summary>
+        /// Нажатие на кнопку О программе
+        /// </summary>
+        private void aboutProgramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string applicationVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            string messageBoxTitle = "О программе";
+            string messageBoxText = "Text Analyzer v" + applicationVersion;
+            MessageBox.Show(
+        messageBoxText,
+        messageBoxTitle,
+        MessageBoxButtons.OK,
+        MessageBoxIcon.Information,
+        MessageBoxDefaultButton.Button1,
+        MessageBoxOptions.DefaultDesktopOnly);
+        }
     }
 
 

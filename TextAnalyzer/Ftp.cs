@@ -301,7 +301,7 @@ namespace TextAnalyzer
                             f = ParseFileStructFromWindowsStyleRecord(s);
                             break;
                     }
-                    if (f.Name != "" && f.Name != "." && f.Name != "..")
+                    if (f.Name.Length != 0 && f.Name != "." && f.Name != "..")
                     {
                         myListArray.Add(f);
                     }

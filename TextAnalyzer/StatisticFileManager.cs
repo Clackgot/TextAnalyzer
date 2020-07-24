@@ -9,17 +9,10 @@ namespace TextAnalyzer
 {
     public static class Paths
     {
-        public static string english = "english";
-        public static string russian = "russian";
+        public const string english = "english";
+        public const string russian = "russian";
     }
-
-
-
     public class StatisticFileManager
     {
-
-
-
-
     }
 }
