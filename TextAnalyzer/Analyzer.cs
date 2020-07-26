@@ -7,11 +7,9 @@ namespace TextAnalyzer
 {
     class Analyzer
     {
-        private char[] EuABC = new char[26];
-        private char[] RuABC = new char[33];
-        private char[] ExstraSym = new char[1]; // цифры, символы, пробелы и тд
-
-        // инициализация массивов с анг/рус буквами и инициализация ключей в словарях
+        /// <summary>
+        /// Инициализация массивов с анг/рус буквами и инициализация ключей в словарях
+        /// </summary>
         private void InitABC()
         {
             string strRuABC = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
@@ -31,10 +29,16 @@ namespace TextAnalyzer
             }
         }
 
+        /// <summary>
+        /// Словари с русскими, англ символами и с их количеством в строке
+        /// </summary>
         public Dictionary<char, int> RuSymbols { get; } = new Dictionary<char, int>();
         public Dictionary<char, int> EuSymbols { get; } = new Dictionary<char, int>();     
         public Dictionary<char, int> ExstraSymbols { get; } = new Dictionary<char, int>(); // цифры, символы, пробелы и тд
 
+        /// <summary>
+        /// Словари с символами и с частотой в строке
+        /// </summary>
         public Dictionary<char, double> ProbabilityRuSymblos { get; } = new Dictionary<char, double>();
         public Dictionary<char, double> ProbabilityEuSymblos { get; }  = new Dictionary<char, double>();
 
@@ -48,7 +52,9 @@ namespace TextAnalyzer
             this.CounterProbability();
         }
 
-        // Заполнение словарей
+        /// <summary>
+        /// Заполнение словарей
+        /// </summary>
         private void CounterEverySymbol()
         {
             for (int i = 0; i < Str.Length; i++)
@@ -64,7 +70,10 @@ namespace TextAnalyzer
             }
         }       
 
-        // возвращает количество английских букв
+        /// <summary>
+        /// Возвращает количество англ букв
+        /// </summary>
+        /// <returns></returns>
         public int EuCounter()
         {
             int EuCounter = 0;
@@ -75,7 +84,10 @@ namespace TextAnalyzer
             return EuCounter;
         }
 
-        // возвращает количество русских букв
+        /// <summary>
+        /// Возвращает количество русских букв
+        /// </summary>
+        /// <returns></returns>
         public int RuCounter()
         {
             int RuCounter = 0;
@@ -86,6 +98,9 @@ namespace TextAnalyzer
             return RuCounter;
         }
 
+        /// <summary>
+        /// Счетчик частоты букв
+        /// </summary>
         private void CounterProbability()
         {
             for (int i = 0; i < Str.Length; i++)
